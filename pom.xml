@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.nuxeo</groupId>
+    <artifactId>nuxeo-addons-parent</artifactId>
+    <version>5.9.3-SNAPSHOT</version>
+  </parent>
+  <groupId>org.nuxeo.kibana</groupId>
+  <artifactId>nuxeo-kibana</artifactId>
+  <name>Nuxeo Kibana</name>
+  <description>Nuxeo Kibana - Deploy Vanilla Latest Kibana in Nuxeo</description>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>download-files</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <get src="http://download.elasticsearch.org/kibana/kibana/kibana-latest.zip"
+                  dest="${project.build.directory}/kibana.zip"
+                  verbose="false"
+                  usetimestamp="true"/>
+                <unzip src="${project.build.directory}/kibana.zip"
+                  dest="${project.build.directory}/classes/web/nuxeo.war/">
+                </unzip>
+                <move file="${project.build.directory}/classes/web/nuxeo.war/kibana-latest"
+                  tofile="${project.build.directory}/classes/web/nuxeo.war/kibana"/>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

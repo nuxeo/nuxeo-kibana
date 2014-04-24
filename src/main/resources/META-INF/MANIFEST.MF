@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Eclipse-LazyStart: true
+Bundle-Version: 1.0.0
+Bundle-Category: web,stateless
+Bundle-Name: Nuxeo Kibana
+Bundle-ManifestVersion: 1
+Bundle-SymbolicName: org.nuxeo.kibana;singleton:=true
